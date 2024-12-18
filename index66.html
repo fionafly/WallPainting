@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COCO Data Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 20px 10px;
+        }
+
+        #canvas {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; /* 确保画布自适应屏幕宽度 */
+            height: auto; /* 保持纵横比 */
+            border: 1px solid black;
+        }
+
+        #info-box {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            pointer-events: none;
+        }
+
+        #text-container {
+            width: 90%; /* 默认宽度为 90% */
+            max-width: 600px; /* 限制最大宽度 */
+            margin: 20px auto; /* 居中 */
+            text-align: justify; /* 文本两端对齐 */
+        }
+
+        h5 {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 20px 10px;
+            text-align: justify;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h5 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>第 38 窟 主室劵顶 萨薄燃臂引路 公元 4 世纪</h1>
+    <canvas id="canvas" width="700" height="700"></canvas>
+    <div id="info-box"></div>
+    <div id="text-container">
+        <h5>图为第 38 窟主室劵顶左侧券腹萨薄燃臂引路本生故事画。图中商主萨薄为菩萨装扮，形象高大，位于画面中央，双臂高举，双手燃烧呈
+            火炬状。其左侧站立一龟兹装束的商人，旁有二牛背上满载货物。故事说 ：有五百商客行路于山谷间，黑暗迷途，诸商客恐盗贼劫物，慌乱不
+            堪。商主萨薄以白毡缠绕双臂，浇上酥油，燃臂当炬为众商客引路。经过七天七夜走出山谷，诸商客喜不自胜，感戴其恩。
+        </h5>
+    </div>
+    <script src="p66.js"></script>
+</body>
+</html>
