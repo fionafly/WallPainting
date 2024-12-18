@@ -59,6 +59,11 @@ img.src = "p60.png";
 
 // 图像加载完毕后执行
 img.onload = () => {
+    // 根据图片的宽高比调整画布尺寸
+    const aspectRatio = img.width / img.height;
+    canvas.width = canvas.clientWidth; // 使用 CSS 控制宽度
+    canvas.height = canvas.width / aspectRatio; // 高度按照比例调整
+
     // 绘制图像
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
@@ -69,78 +74,44 @@ img.onload = () => {
 
         let activeAnnotation = null;
 
-        // 遍历每个注释
+        // 清除画布并重新绘制背景
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
         cocoData.annotations.forEach(annotation => {
             const segmentation = annotation.segmentation[0];
             ctx.beginPath();
             for (let i = 0; i < segmentation.length; i += 2) {
                 const x = (segmentation[i] / cocoData.images[0].width) * canvas.width;
                 const y = (segmentation[i + 1] / cocoData.images[0].height) * canvas.height;
-                ctx.lineTo(x, y);
+                if (i === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
             }
             ctx.closePath();
 
-            // 检测鼠标是否在区域内
+            // 高亮检测
             if (ctx.isPointInPath(mouseX, mouseY)) {
-                ctx.fillStyle = 'rgba(255, 0, 0, 0.5)'; // 高亮显示颜色
+                ctx.fillStyle = 'rgba(255, 0, 0, 0.3)';
                 activeAnnotation = annotation;
             } else {
-                ctx.fillStyle = 'rgba(255, 0, 0, 0)'; // 取消高亮
+                ctx.fillStyle = 'rgba(255, 0, 0, 0)';
             }
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // 清除画布
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height); // 重绘图像
-
-            // 绘制所有注释，显示高亮区域
-            cocoData.annotations.forEach(annotation => {
-                const segmentation = annotation.segmentation[0];
-                ctx.beginPath();
-                for (let i = 0; i < segmentation.length; i += 2) {
-                    const x = (segmentation[i] / cocoData.images[0].width) * canvas.width;
-                    const y = (segmentation[i + 1] / cocoData.images[0].height) * canvas.height;
-                    if (i === 0) {
-                        ctx.moveTo(x, y);
-                    } else {
-                        ctx.lineTo(x, y);
-                    }
-                }
-                ctx.closePath();
-                ctx.fillStyle = activeAnnotation === annotation ? 'rgba(255, 0, 0, 0.3)' : 'rgba(255, 0, 0, 0)'; // 高亮区域
-                ctx.fill();
-
-                // 显示注释信息
-                if (activeAnnotation) {
-                    const infoBoxX = mouseX + 10;
-                    const infoBoxY = mouseY + 10;
-                    infoBox.style.left = `${infoBoxX}px`;
-                    infoBox.style.top = `${infoBoxY}px`;
-                    infoBox.textContent = activeAnnotation.description; // 显示注释
-                    infoBox.style.display = 'block';
-                } else {
-                    infoBox.style.display = 'none'; // 隐藏注释框
-                }
-            });
+            ctx.fill();
         });
-    });
 
-    // 添加点击事件监听器
-    canvas.addEventListener('click', (event) => {
-        const mouseX = event.offsetX;
-        const mouseY = event.offsetY;
-
-        cocoData.annotations.forEach(annotation => {
-            const segmentation = annotation.segmentation[0];
-            ctx.beginPath();
-            for (let i = 0; i < segmentation.length; i += 2) {
-                const x = (segmentation[i] / cocoData.images[0].width) * canvas.width;
-                const y = (segmentation[i + 1] / cocoData.images[0].height) * canvas.height;
-                ctx.lineTo(x, y);
-            }
-            ctx.closePath();
-
-            if (ctx.isPointInPath(mouseX, mouseY)) {
-                infoBox.textContent = annotation.description; // 显示解释
-            }
-        });
+        // 显示注释信息
+        if (activeAnnotation) {
+            const infoBoxX = event.pageX + 10;
+            const infoBoxY = event.pageY + 10;
+            infoBox.style.left = `${infoBoxX}px`;
+            infoBox.style.top = `${infoBoxY}px`;
+            infoBox.textContent = activeAnnotation.description;
+            infoBox.style.display = 'block';
+        } else {
+            infoBox.style.display = 'none';
+        }
     });
 };
