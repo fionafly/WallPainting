@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>克孜尔三十八窟交互展示</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .image-row a {
+            text-decoration: none;
+        }
+        .image-row img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .image-row img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>克孜尔三十八窟交互展示</h1>
+        <div class="image-row">
+            <a href="index60.html" target="_blank">
+                <img src="p60.png" alt="Image 1">
+            </a>
+            <a href="index66.html" target="_blank">
+                <img src="p66.png" alt="Image 2">
+            </a>
+            <a href="index68.html" target="_blank">
+                <img src="p68.png" alt="Image 3">
+            </a>
+            <a href="index69.html" target="_blank">
+                <img src="p69.png" alt="Image 4">
+            </a>
+        </div>
+    </div>
+</body>
+</html>
