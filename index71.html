@@ -10,6 +10,7 @@
             padding: 0;
             font-family: Arial, sans-serif;
             line-height: 1.6;
+            text-align: center; 
         }
 
         h1 {
@@ -20,7 +21,7 @@
 
         #canvas {
             display: block;
-            margin: 0 auto;
+            margin: 20px auto; /* 画布居中 */
             max-width: 100%; /* 确保画布自适应屏幕宽度 */
             height: auto; /* 保持纵横比 */
             border: 1px solid black;
@@ -51,6 +52,14 @@
             text-align: justify;
         }
 
+        /* 视频样式 */
+        #video-container {
+            display: block;
+            margin: 20px auto; /* 视频居中 */
+            max-width: 100%; 
+            height: auto;
+        }
+
         @media (min-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -64,6 +73,7 @@
 </head>
 <body>
     <h1>第 38 窟 主室劵顶 波塞奇画佛 公元 4 世纪</h1>
+
     <canvas id="canvas" width="700" height="700"></canvas>
     <div id="info-box"></div>
     <div id="text-container">
@@ -72,6 +82,15 @@
             时弗沙佛“调和众彩手自为画，以为模法，画一立像。于是画师，乃能图画”。
         </h5>
     </div>
+
+    <!-- 视频播放器 -->
+    <div id="video-container">
+        <video id="video-player" width="700" height="400" controls>
+            <source src="71.mp4" type="video/mp4">
+            您的浏览器不支持 video 标签。
+        </video>
+    </div>
+
     <script src="p71.js"></script>
 </body>
 </html>
