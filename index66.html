@@ -10,20 +10,19 @@
             padding: 0;
             font-family: Arial, sans-serif;
             line-height: 1.6;
-            text-align: center;
+            text-align: center; /* 使内容居中 */
         }
 
         h1 {
-            text-align: center;
             font-size: 1.5rem;
             margin: 20px 10px;
         }
 
         #canvas {
             display: block;
-            margin: 20px auto;
-            max-width: 100%; /* 确保画布自适应屏幕宽度 */
-            height: auto; /* 保持纵横比 */
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
             border: 1px solid black;
         }
 
@@ -39,24 +38,31 @@
         }
 
         #text-container {
-            width: 90%; /* 默认宽度为 90% */
-            max-width: 600px; /* 限制最大宽度 */
-            margin: 20px auto; /* 居中 */
-            text-align: justify; /* 文本两端对齐 */
+            width: 90%;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: justify;
         }
 
         h5 {
             font-size: 1rem;
             line-height: 1.8;
             margin: 20px 10px;
-            text-align: justify;
         }
 
-        /* 视频样式 */
-        #video-container {
+        video {
             display: block;
+            margin: 20px auto; /* 使视频居中 */
+            width: 90%; /* 使视频在小屏幕上自适应 */
+            max-width: 600px;
+        }
+
+        button {
             margin: 20px auto;
-            max-width: 100%;
+            display: block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
         }
 
         @media (min-width: 768px) {
@@ -80,15 +86,13 @@
             堪。商主萨薄以白毡缠绕双臂，浇上酥油，燃臂当炬为众商客引路。经过七天七夜走出山谷，诸商客喜不自胜，感戴其恩。
         </h5>
     </div>
-
-    <!-- 视频播放器 -->
-    <div id="video-container">
-        <video id="video-player" width="700" height="400" controls>
+    <button onclick="document.getElementById('video-container').style.display='block';">让壁画动起来</button>
+    <div id="video-container" style="display: none;">
+        <video controls>
             <source src="66.mp4" type="video/mp4">
-            您的浏览器不支持 video 标签。
+            您的浏览器不支持视频播放。
         </video>
     </div>
-
     <script src="p66.js"></script>
 </body>
 </html>
